@@ -1,13 +1,16 @@
 package com.christianbeckham.movies.movie;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/movies")
@@ -19,6 +22,12 @@ public class MovieController {
     public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> allMovies = movieService.getAllMovies();
         return new ResponseEntity<List<Movie>>(allMovies, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Movie>> getMovieById(@PathVariable String id) {
+        Optional<Movie> movie = movieService.getMovieById(id);
+        return new ResponseEntity<Optional<Movie>>(movie, HttpStatus.OK);
     }
 
 }
