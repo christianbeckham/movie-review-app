@@ -1,4 +1,6 @@
-import { Carousel } from "antd";
+import { Carousel, Typography, Button } from "antd";
+import { PlayCircleFilled } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const Hero = ({ movies }) => {
 	return (
@@ -30,7 +32,14 @@ const Hero = ({ movies }) => {
 							<div style={{ height: "300px", border: "1px solid royalblue", borderRadius: "4px", overflow: "hidden" }}>
 								<img style={{ height: "100%" }} src={m.poster} alt={m.title} />
 							</div>
-							<h3>{m.title}</h3>
+							<div>
+								<Typography.Title style={{ color: "#fff" }}>{m.title}</Typography.Title>
+								<Link to={`/movie/${m.imdbId}`}>
+									<Button type="primary" icon={<PlayCircleFilled />}>
+										Trailer
+									</Button>
+								</Link>
+							</div>
 						</div>
 					</div>
 				</div>
