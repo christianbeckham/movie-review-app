@@ -4,6 +4,7 @@ import api from "./api/axios.config";
 
 import PageLayout from "./components/PageLayout/PageLayout";
 import HomePage from "./pages/HomePage/HomePage";
+import MoviePage from "./pages/MoviePage/MoviePage";
 
 const App = () => {
 	const [movies, setMovies] = useState([]);
@@ -22,13 +23,14 @@ const App = () => {
 	}, []);
 
 	return (
-		<div className="App">
+		<>
 			<Routes>
 				<Route path="/" element={<PageLayout />}>
 					<Route path="/" element={<HomePage movies={movies} />} />
+					<Route path="/movie/:movieId" element={<MoviePage />} />
 				</Route>
 			</Routes>
-		</div>
+		</>
 	);
 };
 
